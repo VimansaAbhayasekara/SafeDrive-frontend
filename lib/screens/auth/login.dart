@@ -16,9 +16,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController =
-      TextEditingController(text: 'dilshanramesh81@gmail.com');
+      TextEditingController(text: 'vima@gmail.com');
   final TextEditingController _passwordController =
-      TextEditingController(text: '123');
+      TextEditingController(text: 'vima');
 
   bool isVisible = true;
   String? error;
