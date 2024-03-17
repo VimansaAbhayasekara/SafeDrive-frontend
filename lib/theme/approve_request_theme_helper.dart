@@ -1,6 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:safedrive/core/utils/size_utils.dart';
-
 
 String _appTheme = "primary";
 
@@ -16,9 +16,9 @@ class ThemeHelper {
     'primary': ColorSchemes.primaryColorScheme
   };
 
-  /// Changes the app theme to [newTheme].
-  void changeTheme(String newTheme) {
-    _appTheme = newTheme;
+  /// Changes the app theme to [_newTheme].
+  void changeTheme(String _newTheme) {
+    _appTheme = _newTheme;
   }
 
   /// Returns the primary colors for the current theme.
@@ -51,7 +51,7 @@ class ThemeHelper {
       scaffoldBackgroundColor: appTheme.gray50,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: appTheme.blueGray50,
+          backgroundColor: appTheme.indigo50,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.h),
           ),
@@ -76,48 +76,26 @@ class ThemeHelper {
 class TextThemes {
   static TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
         bodyLarge: TextStyle(
-          color: appTheme.blueGray500,
+          color: appTheme.gray900,
           fontSize: 16.fSize,
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
         ),
-
-    bodyMedium: TextStyle(
-      color: appTheme.blueGray50001,
-      fontSize: 14.fSize,
-      fontFamily: 'Inter',
-      fontWeight: FontWeight.w400,
-    ),
-
-    titleLarge: TextStyle(
-      color: appTheme.gray900,
-      fontSize: 22.fSize,
-      fontFamily: 'Inter',
-      fontWeight: FontWeight.w700,
-    ),
-
-
-    headlineSmall: TextStyle(
-          color: appTheme.whiteA700,
-          fontSize: 24.fSize,
+        bodyMedium: TextStyle(
+          color: appTheme.blueGray50001,
+          fontSize: 14.fSize,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+        ),
+        titleLarge: TextStyle(
+          color: appTheme.gray900,
+          fontSize: 22.fSize,
           fontFamily: 'Inter',
           fontWeight: FontWeight.w700,
         ),
-        labelLarge: TextStyle(
-          color: appTheme.blueGray500,
-          fontSize: 12.fSize,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w500,
-        ),
         titleMedium: TextStyle(
-          color: appTheme.gray900,
+          color: appTheme.gray50,
           fontSize: 16.fSize,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w500,
-        ),
-        titleSmall: TextStyle(
-          color: appTheme.blueGray500,
-          fontSize: 14.fSize,
           fontFamily: 'Inter',
           fontWeight: FontWeight.w700,
         ),
@@ -126,28 +104,22 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static const primaryColorScheme = ColorScheme.light();
+  static final primaryColorScheme = ColorScheme.light();
 }
 
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
-
   // Blue
-  Color get blue600 => Color(0XFF198EE5);
+  Color get blue600 => Color(0XFF0C7CF2);
 
   // BlueGray
-  Color get blueGray100 => const Color(0XFFD1DBE5);
-  Color get blueGray50 => const Color(0XFFE8EDF2);
-  Color get blueGray500 => const Color(0XFF4F7296);
-
-  Color get blueGray50001 => const Color(0XFF49709B);
+  Color get blueGray500 => Color(0XFF4A709C);
+  Color get blueGray50001 => Color(0XFF49709B);
 
   // Gray
-  Color get gray50 => const Color(0XFFF7F9F9);
-  Color get gray900 => const Color(0XFF0C141C);
+  Color get gray50 => Color(0XFFF7F9FC);
+  Color get gray900 => Color(0XFF0C141C);
 
-  // White
-  Color get whiteA700 => const Color(0XFFFFFFFF);
   // Indigo
   Color get indigo50 => Color(0XFFE8EDF4);
 }

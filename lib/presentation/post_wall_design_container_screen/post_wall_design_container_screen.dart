@@ -35,9 +35,9 @@ class PostWallDesignContainerScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return "/";
-      case BottomBarEnum.Categories:
         return AppRoutes.postWallDesignTabContainerPage;
+      case BottomBarEnum.Categories:
+        return "/";
       case BottomBarEnum.Chat:
         return "/";
       case BottomBarEnum.Account:

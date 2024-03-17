@@ -38,4 +38,12 @@ class ImageConstant {
 
   static String imgCalender =
       '$imagePath/img_calender.svg';
+
+  // Approve a Service Center request images
+
+  static String backButtonIcon = '$imagePath/img_back_button.svg';
+
+  static String profilePic = '$imagePath/img_profilepic.png';
+
+
 }

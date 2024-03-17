@@ -32,6 +32,14 @@ class CustomTextStyles {
     color: appTheme.gray900,
     fontWeight: FontWeight.w500,
   );
+
+  static get titleMediumGray900Medium => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.gray900,
+    fontWeight: FontWeight.w500,
+  );
+  static get titleMediumGray900_1 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.gray900,
+  );
 }
 
 extension on TextStyle {

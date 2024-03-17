@@ -12,6 +12,6 @@ class ServiceRequestAppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     galileoDesignContainerScreen: (context) => GalileoDesignContainerScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
+    appNavigationScreen: (context) => const AppNavigationScreen()
   };
 }

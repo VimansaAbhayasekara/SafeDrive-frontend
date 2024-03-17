@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:safedrive/core/utils/size_utils.dart';
 import 'package:safedrive/theme/theme_helper.dart';
 
-
 class AppDecoration {
   // Fill decorations
   static BoxDecoration get fillGray => BoxDecoration(
@@ -17,10 +16,19 @@ class AppDecoration {
   );
 
 
+  static BoxDecoration get fillBluegray500 => BoxDecoration(
+    color: appTheme.blueGray500,
+  );
+
 
 }
 
 class BorderRadiusStyle {
+
+  // Circle borders
+  static BorderRadius get circleBorder28 => BorderRadius.circular(
+    28.h,
+  );
   // Rounded borders
   static BorderRadius get roundedBorder12 => BorderRadius.circular(
         12.h,
