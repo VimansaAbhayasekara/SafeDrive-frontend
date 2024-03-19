@@ -109,12 +109,12 @@ class MyApp extends StatelessWidget {
           theme: theme,
           title: 'ammar_s_application1',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.postWallDesignContainerScreen,
-          routes: AppRoutes.routes,
+          // initialRoute: AppRoutes.postWallDesignContainerScreen,
+          // routes: AppRoutes.routes,
           // initialRoute: ServiceRequestAppRoutes.galileoDesignContainerScreen,
-          // initialRoute: MakeRequestAppRoutes.makeRequestDesignScreen,
+          initialRoute: MakeRequestAppRoutes.makeRequestDesignScreen,
 
-          // routes: MakeRequestAppRoutes.routes,
+          routes: MakeRequestAppRoutes.routes,
           // routes: ServiceRequestAppRoutes.routes,
 
           // initialRoute: ApproveRequestAppRoutes.serviceRequestApprovalScreen,

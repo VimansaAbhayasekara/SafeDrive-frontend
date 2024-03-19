@@ -4,6 +4,8 @@ import 'package:safedrive/view/profile_view.dart';
 import 'package:safedrive/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/utils/size_utils.dart';
+
 // ignore_for_file: must_be_immutable
 class PostWallDesignContainerScreen extends StatelessWidget {
   PostWallDesignContainerScreen({Key? key}) : super(key: key);
@@ -12,16 +14,21 @@ class PostWallDesignContainerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: Navigator(
-                key: navigatorKey,
-                initialRoute: AppRoutes.postWallDesignTabContainerPage,
-                onGenerateRoute: (routeSetting) => PageRouteBuilder(
-                    pageBuilder: (ctx, ani, ani1) =>
-                        getCurrentPage(routeSetting.name!),
-                    transitionDuration: const Duration(seconds: 0))),
-            bottomNavigationBar: _buildBottomBar(context)));
+
+    return Sizer(builder: (context, orientation, deviceType)
+    {
+      return SafeArea(
+          child: Scaffold(
+              body: Navigator(
+                  key: navigatorKey,
+                  initialRoute: AppRoutes.postWallDesignTabContainerPage,
+                  onGenerateRoute: (routeSetting) =>
+                      PageRouteBuilder(
+                          pageBuilder: (ctx, ani, ani1) =>
+                              getCurrentPage(routeSetting.name!),
+                          transitionDuration: const Duration(seconds: 0))),
+              bottomNavigationBar: _buildBottomBar(context)));
+    });
   }
 
   /// Section Widget

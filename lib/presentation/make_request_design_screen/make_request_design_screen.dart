@@ -75,203 +75,202 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
   Widget build(BuildContext context) {
 
     DateTime selectedDate = DateTime.now();
-    return SafeArea(
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(vertical: 18.v),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Request Service",
-                    style: theme.textTheme.titleLarge,
-                  ),
-                ),
-                SizedBox(height: 24.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Vehicle Make",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                SizedBox(height: 8.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.h),
-                  child: CustomDropDown(
-                    icon: Container(
-                      margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
-                      child: CustomImageView(
-                        imagePath: ImageConstant.imgTick,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize,
-                      ),
+    return Sizer(builder: (context, orientation, deviceType)
+    {
+      return SafeArea(
+        child: Scaffold(
+          appBar: _buildAppBar(context),
+          body: SingleChildScrollView(
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(vertical: 18.v),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Request Service",
+                      style: theme.textTheme.titleLarge,
                     ),
-                    hintText: "Select vehicle make",
-                    alignment: Alignment.center,
-                    items: vehicleMakes.map((make) => make.vehicleMakeName).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _vehicleMake.text = value;
-                      });
-
-                    },
                   ),
-                ),
-                SizedBox(height: 26.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Vehicle Model",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                SizedBox(height: 9.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.h),
-                  child: CustomTextField(
-                    controller: _vehicleModel,
-                    icon: Container(
-                      margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
-                      child: CustomTextField(
-                        width: 24.adaptSize,
-                      ),
+                  SizedBox(height: 24.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Vehicle Make",
+                      style: theme.textTheme.titleMedium,
                     ),
-                    hintText: "Select vehicle model",
-                    alignment: Alignment.center,
-                    onChanged: (value) {},
                   ),
-                ),
-                SizedBox(height: 26.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Service Center",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                SizedBox(height: 9.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.h),
-                  child: CustomDropDown(
-                    icon: Container(
-                      margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
-                      child: CustomImageView(
-                        imagePath: ImageConstant.imgTick,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize,
+                  SizedBox(height: 8.v),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.h),
+                    child: CustomDropDown(
+                      icon: Container(
+                        margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgTick,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                        ),
                       ),
+                      hintText: "Select vehicle make",
+                      alignment: Alignment.center,
+                      items: vehicleMakes.map((make) => make.vehicleMakeName)
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _vehicleMake.text = value;
+                        });
+                      },
                     ),
-                    hintText: "Select service center",
-                    alignment: Alignment.center,
-                    items: dropdownItemList1,
-                    onChanged: (value) {
-
-                      setState(() {
-                        _serviceCenter.text = value;
-                      });
-
-                    },
                   ),
-                ),
-                SizedBox(height: 27.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Specific Service",
-                    style: theme.textTheme.titleMedium,
+                  SizedBox(height: 26.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Vehicle Model",
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
-                ),
-                SizedBox(height: 8.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.h),
-                  child: CustomDropDown(
-                    icon: Container(
-                      margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
-                      child: CustomImageView(
-                        imagePath: ImageConstant.imgTick,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize,
+                  SizedBox(height: 9.v),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.h),
+                    child: CustomTextField(
+                      controller: _vehicleModel,
+                      icon: Container(
+                        margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
+                        child: CustomTextField(
+                          width: 24.adaptSize,
+                        ),
                       ),
+                      hintText: "Select vehicle model",
+                      alignment: Alignment.center,
+                      onChanged: (value) {},
                     ),
-                    hintText: "Select specific service",
-                    alignment: Alignment.center,
-                    items: dropdownItemList2,
-                    onChanged: (value) {
-
-                      setState(() {
-                        _specificServices.text = value;
-                      });
-                    },
                   ),
-                ),
-                SizedBox(height: 26.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Date ",
-                    style: theme.textTheme.titleMedium,
+                  SizedBox(height: 26.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Service Center",
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
-                ),
-                SizedBox(height: 9.v),
-
-
-                _buildDepthFrameZero(context,selectedDate),
-                SizedBox(height: 27.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "Time Slot",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                SizedBox(height: 8.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.h),
-                  child: CustomDropDown(
-                    icon: Container(
-                      margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
-                      child: CustomImageView(
-                        imagePath: ImageConstant.imgTick,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize,
+                  SizedBox(height: 9.v),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.h),
+                    child: CustomDropDown(
+                      icon: Container(
+                        margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgTick,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                        ),
                       ),
+                      hintText: "Select service center",
+                      alignment: Alignment.center,
+                      items: dropdownItemList1,
+                      onChanged: (value) {
+                        setState(() {
+                          _serviceCenter.text = value;
+                        });
+                      },
                     ),
-                    hintText: "Select Time Slot",
-                    alignment: Alignment.center,
-                    items: dropdownItemList2,
-                    onChanged: (value) {
-
-                      setState(() {
-                        _timeSlot.text = value;
-                      });
-                    },
                   ),
-                ),
-                SizedBox(height: 26.v),
-
-                _buildDepthFrameZero1(context),
-                SizedBox(height: 12.v),
-                Container(
-                  height: 20.v,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    color: appTheme.gray50,
+                  SizedBox(height: 27.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Specific Service",
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
-                ),
-                SizedBox(height: 5.v),
+                  SizedBox(height: 8.v),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.h),
+                    child: CustomDropDown(
+                      icon: Container(
+                        margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgTick,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                        ),
+                      ),
+                      hintText: "Select specific service",
+                      alignment: Alignment.center,
+                      items: dropdownItemList2,
+                      onChanged: (value) {
+                        setState(() {
+                          _specificServices.text = value;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 26.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Date ",
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(height: 9.v),
 
-              ],
+
+                  _buildDepthFrameZero(context, selectedDate),
+                  SizedBox(height: 27.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "Time Slot",
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(height: 8.v),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.h),
+                    child: CustomDropDown(
+                      icon: Container(
+                        margin: EdgeInsets.fromLTRB(30.h, 16.v, 16.h, 16.v),
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgTick,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                        ),
+                      ),
+                      hintText: "Select Time Slot",
+                      alignment: Alignment.center,
+                      items: dropdownItemList2,
+                      onChanged: (value) {
+                        setState(() {
+                          _timeSlot.text = value;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 26.v),
+
+                  _buildDepthFrameZero1(context),
+                  SizedBox(height: 12.v),
+                  Container(
+                    height: 20.v,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: appTheme.gray50,
+                    ),
+                  ),
+                  SizedBox(height: 5.v),
+
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   /// Section Widget
@@ -426,22 +425,25 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
     }
   }
 
-
-  /// Section Widget
+//Section Widget
   Widget _buildDepthFrameZero1(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomElevatedButton(
-              width: 84.h,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 1,
+            child: CustomElevatedButton(
+              width: double.infinity, // Adjusted width to fill available space
               text: "Cancel",
             ),
-            CustomElevatedButton(
-              width: 90.h,
+          ),
+          SizedBox(width: 10.h), // Added some spacing between the buttons
+          Flexible(
+            flex: 1,
+            child: CustomElevatedButton(
+              width: double.infinity, // Adjusted width to fill available space
               text: "Request",
               buttonStyle: CustomButtonStyles.fillBlue,
               buttonTextStyle: theme.textTheme.titleSmall!,
@@ -452,9 +454,10 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
                 // You can replace the print statement with any action you desire.
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+
 }
