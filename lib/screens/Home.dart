@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/presentation/service_center_request_design_container_screen/service_request_design_container_screen.dart';
 
 import 'package:safedrive/res/lists.dart';
@@ -566,8 +567,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              GalileoDesignContainerScreen()));
+                          builder: (context) => MakeRequestDesignScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
