@@ -559,7 +559,7 @@ class _HomeState extends State<Home> {
                       Color.fromARGB(255, 89, 89, 89), // Set button color
                   padding: EdgeInsets.all(3), // Add padding
                 ),
-                child: category("assets/images/heart.png", "Profile", 10),
+                child: category("assets/images/heart.png", "Profil", 10),
               ),
               SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
