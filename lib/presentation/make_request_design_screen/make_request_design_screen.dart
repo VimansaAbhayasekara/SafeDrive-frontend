@@ -437,6 +437,10 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
             child: CustomElevatedButton(
               width: double.infinity, // Adjusted width to fill available space
               text: "Cancel",
+              onPressed: () {
+                // Navigate back to Home() screen when cancel button is pressed
+                Navigator.pop(context);
+              },
             ),
           ),
           SizedBox(width: 10.h), // Added some spacing between the buttons

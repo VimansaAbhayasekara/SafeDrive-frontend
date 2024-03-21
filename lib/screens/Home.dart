@@ -1,14 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
-import 'package:safedrive/presentation/service_center_request_design_container_screen/service_request_design_container_screen.dart';
-
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
 import 'package:safedrive/screens/widgets/text_widget.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
+import '../view/profile_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -552,7 +551,10 @@ class _HomeState extends State<Home> {
               SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Physo()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileView()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:

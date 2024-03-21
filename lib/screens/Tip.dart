@@ -22,7 +22,7 @@ class TipsPage extends StatelessWidget {
       body: Container(
         color: Color.fromARGB(255, 126, 126, 126), // Set background color
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
