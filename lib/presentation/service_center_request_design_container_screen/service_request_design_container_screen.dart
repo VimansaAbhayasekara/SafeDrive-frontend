@@ -13,18 +13,22 @@ class GalileoDesignContainerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: Navigator(
-                key: navigatorKey,
-                initialRoute: ServiceRequestAppRoutes.galileoDesignPage,
-                onGenerateRoute: (routeSetting) => PageRouteBuilder(
-                    pageBuilder: (ctx, ani, ani1) =>
-                        getCurrentPage(routeSetting.name!),
-                    transitionDuration: Duration(seconds: 0))),
-            bottomNavigationBar: Padding(
-                padding: EdgeInsets.only(left: 5.h),
-                child: _buildBottomBar(context))));
+    return Sizer(builder: (context, orientation, deviceType)
+    {
+      return SafeArea(
+          child: Scaffold(
+              body: Navigator(
+                  key: navigatorKey,
+                  initialRoute: ServiceRequestAppRoutes.galileoDesignPage,
+                  onGenerateRoute: (routeSetting) =>
+                      PageRouteBuilder(
+                          pageBuilder: (ctx, ani, ani1) =>
+                              getCurrentPage(routeSetting.name!),
+                          transitionDuration: Duration(seconds: 0))),
+              bottomNavigationBar: Padding(
+                  padding: EdgeInsets.only(left: 5.h),
+                  child: _buildBottomBar(context))));
+    });
   }
 
   /// Section Widget
