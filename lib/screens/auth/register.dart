@@ -300,7 +300,7 @@ class _RegisterState extends State<Register> {
                       if (value == null || value.isEmpty) {
                         return 'Confirm Password is required';
                       }
-                      if(value != _passwordController.text) {
+                      if (value != _passwordController.text) {
                         return 'Confirm Password is not match';
                       }
                       return null;

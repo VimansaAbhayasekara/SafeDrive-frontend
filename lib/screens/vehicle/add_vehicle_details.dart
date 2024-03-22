@@ -117,7 +117,7 @@ class _AddVehicleDetailsState extends State<AddVehicleDetails> {
             key: _formKey,
             child: Column(
               children: [
-                 SizedBox(
+                SizedBox(
                   height: size.height * 0.040,
                 ),
                 CustomInput(
