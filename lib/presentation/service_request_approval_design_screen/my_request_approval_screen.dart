@@ -13,21 +13,21 @@ import 'package:http/http.dart' as http;
 import '../service_Center_Request_design_container_screen/service_request_design_container_screen.dart';
 import '../service_request_design_page/service_request_design_page.dart';
 
-class ServiceRequestApprovalScreen extends StatefulWidget {
+class MyRequestApprovalScreen extends StatefulWidget {
 
   final ServiceRequests serviceRequests;
 
-  const ServiceRequestApprovalScreen({Key? key,required this.serviceRequests,
+  const MyRequestApprovalScreen({Key? key,required this.serviceRequests,
   })
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
-  State<ServiceRequestApprovalScreen> createState() => _ServiceRequestApprovalScreenState();
+  State<MyRequestApprovalScreen> createState() => _MyRequestApprovalScreenState();
 }
 
-class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScreen> {
+class _MyRequestApprovalScreenState extends State<MyRequestApprovalScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +152,7 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
                 ),
 
                 // SizedBox(height: 20.v),
-                _buildBottomButtons(context),
+                // _buildBottomButtons(context),
                 // SizedBox(height: 12.v),
                 _buildChat(context),
 

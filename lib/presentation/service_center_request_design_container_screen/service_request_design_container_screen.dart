@@ -1,4 +1,5 @@
 
+import 'package:safedrive/presentation/service_request_design_page/widgets/my_request_design_screen.dart';
 import 'package:safedrive/widgets/service_request_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:safedrive/core/app_export.dart';
@@ -46,7 +47,7 @@ class GalileoDesignContainerScreen extends StatelessWidget {
       case BottomBarEnum.Chat:
         return "/";
       case BottomBarEnum.Myrequests:
-        return "/";
+        return ServiceRequestAppRoutes.myRequestDesignScreen;
       case BottomBarEnum.Account:
         return "/";
       default:
@@ -59,6 +60,9 @@ class GalileoDesignContainerScreen extends StatelessWidget {
     switch (currentRoute) {
       case ServiceRequestAppRoutes.galileoDesignPage:
         return GalileoDesignPage();
+
+      case ServiceRequestAppRoutes.myRequestDesignScreen:
+        return MyRequestDesignScreen() ;
       default:
         return DefaultWidget();
     }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:safedrive/presentation/make_request_design_screen/vehicleMake.dart';
+import 'package:safedrive/services/services.dart';
 import 'package:safedrive/widgets/custom_textfield.dart';
 import 'package:safedrive/widgets/date_time_picker.dart';
 import 'package:safedrive/widgets/make_request_app_bar/custom_app_bar.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:safedrive/core/app_export.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:safedrive/services/token_service.dart';
 
 
 
@@ -310,46 +311,24 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
 
 
   void addServiceRequest() async {
-    // final String url = 'https://serverbackend-w5ny.onrender.com/servicerequest';
-    //
-    // Map<String, dynamic> requestData = {
-    //         "vehicleMake" : _vehicleMake.text,
-    //         "vehicleModel" : _vehicleModel.text,
-    //         "serviceCenter" : _serviceCenter.text,
-    //         "specificServices" : _specificServices.text,
-    //         "dateTime" : _dateTime.text,
-    //         "timeSlot"  : _timeSlot.text,
-    //
-    // };
-    //
-    // // Encode the request body
-    // String requestBody = jsonEncode(requestData);
-    //
-    // // Set up headers
-    // Map<String, String> headers = {
-    //   'Content-Type': 'application/json',
-    // };
-    //
-    // try {
-    //   // Make POST request
-    //   final http.Response response = await http.post(
-    //     Uri.parse(url),
-    //     headers: headers,
-    //     body: requestBody,
-    //   );
-    //
-    //   // Check status code for success (2xx) or failure (4xx or 5xx)
-    //   if (response.statusCode == 200) {
-    //     print('Request posted successfully');
-    //     print('Response: ${response.body}');
-    //   } else {
-    //     print('Failed to post request. Status code: ${response.statusCode}');
-    //     print('Response: ${response.body}');
-    //   }
-    // } catch (e) {
-    //   print('Exception thrown: $e');
-    // }
 
+    // Call getUserDetails() to get user details
+    Map<String, dynamic>? userDetails = await TokenService().getUserDetails();
+
+    if (userDetails == null) {
+      print('Failed to get user details');
+      showToast("Failed to get user details", false);
+      return;
+    }
+
+    // Extract email from user details
+    String? userEmail = userDetails['email'] as String?;
+
+    if (userEmail == null) {
+      print('User email not found');
+      showToast("User email not found", false);
+      return;
+    }
 
     final String url = 'https://serverbackend-w5ny.onrender.com/servicerequest';
 
@@ -360,6 +339,8 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
       "specificServices": _specificServices.text,
       "dateTime": _dateTime.text,
       "timeSlot": _timeSlot.text,
+      "userEmail": userEmail,
+      "status" : "pending"
     };
 
     // Encode the request body
