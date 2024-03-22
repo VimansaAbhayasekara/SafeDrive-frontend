@@ -19,6 +19,7 @@ class TokenService {
     if (authData != null) {
       Auth auth = Auth.fromJson(authData);
       await storage.setItem("auth", auth.toJson());
+      // await storage.setItem("userEmail", auth.email);
     }
   }
 
@@ -39,6 +40,28 @@ class TokenService {
     }
     return auth;
   }
+
+  // Future<String?> getUserEmail() async {
+  //   return await storage.getItem("userEmail");
+  // }
+
+  // Method to retrieve all logged in user details
+  Future<Map<String, dynamic>?> getUserDetails() async {
+    Auth? auth = await getAuth();
+    if (auth != null) {
+      return {
+        'email': auth.email,
+        'password': auth.password,
+        'role': auth.role,
+        'mobile': auth.mobile,
+        'province': auth.province,
+        'district': auth.district,
+        'businessLicenseNumber': auth.businessLicenseNumber,
+      };
+    }
+    return null;
+  }
+
 
   Future<bool> validateToken() async {
     String? token;
