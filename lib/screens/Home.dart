@@ -50,7 +50,10 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             icon: const Icon(
-                Icons.notifications), // Add your notification icon here
+              Icons.notifications,
+              size: 30,
+              color: Colors.white,
+            ), // Add your notification icon here
             onPressed: () {
               // Add onPressed functionality for the notification icon
               // For example, you can open a notification panel or navigate to a notification page
@@ -153,8 +156,8 @@ class _HomeState extends State<Home> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextWidget("Hello", 17, Colors.white.withOpacity(.7),
-                              FontWeight.bold),
+                          TextWidget(
+                              "Hello", 17, Colors.white, FontWeight.bold),
                           TextWidget(
                               "Welcome", 25, Colors.white, FontWeight.bold),
                         ],
@@ -327,7 +330,7 @@ class _HomeState extends State<Home> {
                           TextWidget(
                             "Our service providers",
                             25,
-                            Colors.black.withOpacity(.8),
+                            Colors.white.withOpacity(.8),
                             FontWeight.bold,
                             letterSpace: 0,
                           ),
@@ -349,7 +352,7 @@ class _HomeState extends State<Home> {
                               child: TextWidget(
                                 "See all",
                                 15,
-                                Colors.blue.shade600.withOpacity(.8),
+                                Colors.white.withOpacity(.8),
                                 FontWeight.bold,
                                 letterSpace: 0,
                               )),
