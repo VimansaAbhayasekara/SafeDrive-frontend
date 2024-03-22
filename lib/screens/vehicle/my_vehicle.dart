@@ -34,9 +34,15 @@ class _MyVehicleState extends State<MyVehicle> {
   int selectedCategory = 0;
   List<VehicleDetails> vehicleDetails = [];
 
+  // Variable to hold the logged-in user's email
+  // late String userEmail;
+
+
   @override
   void initState() {
     super.initState();
+    // Retrieve user's email when the widget initializes
+    // _getUserEmail();
     _getVehicleDetails(categories[selectedCategory]['value'].toString());
   }
 
@@ -45,6 +51,13 @@ class _MyVehicleState extends State<MyVehicle> {
     vehicleDetails = [];
     super.dispose();
   }
+
+  // Future<void> _getUserEmail() async {
+    // Retrieve user's email from TokenService
+    // userEmail = await TokenService().getUserEmail() ?? "";
+    // UI to display the user's email
+    // setState(() {});
+  // }
 
   _getVehicleDetails(String category) async {
     vehicleDetails =
@@ -84,12 +97,31 @@ class _MyVehicleState extends State<MyVehicle> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+
+        // title: Row(
+        //   children: [
+        //     Text(
+        //       'My Vehicle',
+        //       style: GoogleFonts.urbanist(
+        //         fontWeight: FontWeight.w500,
+        //       ),
+        //     ),
+        //     SizedBox(width: 10), // Adding some spacing between the title and email
+        //     Text(
+        //       // Displaying user's email
+        //       userEmail,
+        //       style: TextStyle(fontSize: 16),
+        //     ),
+        //   ],
+        // ),
+
         title: Text(
           'My Vehicle',
           style: GoogleFonts.urbanist(
             fontWeight: FontWeight.w500,
           ),
         ),
+
         actions: [
           GestureDetector(
             onTap: logout,
