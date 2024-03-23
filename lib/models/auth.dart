@@ -1,4 +1,5 @@
 class Auth {
+  String? name;
   String? email;
   String? password;
   String? role;
@@ -7,9 +8,10 @@ class Auth {
   String? district;
   String? businessLicenseNumber;
 
-  Auth({this.email, this.password, this.role, this.province, this.district});
+  Auth({this.name, this.email, this.password, this.role, this.province, this.district});
 
   Auth.fromJson(Map<dynamic, dynamic> json) {
+    name = json['name'];
     email = json['email'];
     password = json['password'];
     role = json['role'];
@@ -21,6 +23,7 @@ class Auth {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
     data['email'] = email;
     data['password'] = password;
     data['role'] = role;
