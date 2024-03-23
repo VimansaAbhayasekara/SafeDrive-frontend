@@ -1,21 +1,24 @@
+
+
+
 {
   "project_info": {
-    "project_number": "251085162608",
-    "project_id": "safedrive-f7c49",
-    "storage_bucket": "safedrive-f7c49.appspot.com"
+    "project_number": "130526018894",
+    "project_id": "safedrive-3f52e",
+    "storage_bucket": "safedrive-3f52e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:251085162608:android:b24e129ffbd608101fccb5",
+        "mobilesdk_app_id": "1:130526018894:android:87f6ded2efabfe3b3ff21f",
         "android_client_info": {
-          "package_name": "lk.dilshan.safedrive"
+          "package_name": "com.example.sdgp_01"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB0K46Eph5a6beADkN9Wa5nsC_fYRWhwLk"
+          "current_key": "AIzaSyB0zLaD7zvgF4mlwY6evhpd2YBmhuzlKtI"
         }
       ],
       "services": {
