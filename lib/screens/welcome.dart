@@ -19,15 +19,15 @@ class _WelcomeState extends State<Welcome> {
   @override
   void initState() {
     super.initState();
-    setTimer();
+    // setTimer();
   }
 
-  void setTimer() async {
-    final LocalStorage storage = LocalStorage('Safedrive');
-    await storage.ready;
-    await Future.delayed(const Duration(seconds: 1))
-        .then((value) => _navigate());
-  }
+  // void setTimer() async {
+  //   final LocalStorage storage = LocalStorage('Safedrive');
+  //   await storage.ready;
+  //   await Future.delayed(const Duration(seconds: 1))
+  //       .then((value) => _navigate());
+  // }
 
   Future<void> _navigate() async {
     if (await tokenService.validateToken()) {

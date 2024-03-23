@@ -151,18 +151,33 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
     }
 
     final String userEmail = userDetails['email'];
-
+    final String userRole = userDetails['role']; // Assuming role is included in userDetails
+    print(userRole);
     final String url = 'https://serverbackend-w5ny.onrender.com/servicerequest';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body);
         print('All service requests: $jsonData');
-        final List<ServiceRequests> filteredRequests = jsonData
-            .map((json) => ServiceRequests.fromJson(json))
-            .where((request) =>
-        request.userEmail == userEmail && request.status == "approved") // Filtering by status
-            .toList();
+
+        List<ServiceRequests> filteredRequests = []; // Initializing with an empty list
+
+        if (userRole == 'Service Center') {
+          // Fetch only approved requests for Service Center
+          filteredRequests = jsonData
+              .map((json) => ServiceRequests.fromJson(json))
+              .where((request) =>
+          request.userEmail == userEmail && request.status == "approved")
+              .toList();
+        } else if (userRole == 'Vehicle Owner') {
+          // Fetch all requests for Vehicle User without checking status
+          filteredRequests = jsonData
+              .map((json) => ServiceRequests.fromJson(json))
+              .where((request) =>
+          request.userEmail == userEmail)
+              .toList();
+        }
+
         print('Filtered service requests: $filteredRequests');
 
         if (mounted) {

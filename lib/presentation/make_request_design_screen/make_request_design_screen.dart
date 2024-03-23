@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
+import 'package:safedrive/configuration/config.dart';
+import 'package:safedrive/presentation/make_request_design_screen/serviceCenterNames.dart';
 import 'package:safedrive/presentation/make_request_design_screen/vehicleMake.dart';
 import 'package:safedrive/services/services.dart';
 import 'package:safedrive/widgets/custom_textfield.dart';
@@ -30,22 +33,32 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
   List<VehicleMake> vehicleMakes = [];
   String? selectedVehicleMake;
 
-  List<String> dropdownItemList = [
-    "Item One",
-    "Item Two",
-    "Item Three",
+  String? _selectedServiceCenter; // Initial value
+  List<ServiceCenterNames> _serviceRequestNames = [];
+
+  List<String> specificServiceItemList = [
+    "Oil Change",
+    "Wheel Alignment",
+    "Brake Inspection and Service",
+    "Air Filter Replacement",
+    "Coolant Flush and Fill",
+    "Transmission Fluid Change",
+    "Battery Service",
+    "Spark Plug Replacement",
+    "Fluid Checks"
   ];
 
-  List<String> dropdownItemList1 = [
-    "Item One",
-    "Item Two",
-    "Item Three",
-  ];
+  List<String> timeSlotList = [
+    "8am - 9am",
+    "9am - 10am",
+    "10am - 11am",
+    "11am - 12am",
+    "12am - 1pm",
+    "1pm - 2pm",
+    "2pm - 3pm",
+    "3pm - 4pm",
+    "4pm - 5pm",
 
-  List<String> dropdownItemList2 = [
-    "Item One",
-    "Item Two",
-    "Item Three",
   ];
 
   TextEditingController _vehicleMake = TextEditingController();
@@ -69,6 +82,8 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
 
     fetchVehicleMakeNames();
     addServiceRequest();
+    _fetchServiceRequestNames();
+
   }
 
 
@@ -172,7 +187,8 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
                       ),
                       hintText: "Select service center",
                       alignment: Alignment.center,
-                      items: dropdownItemList1,
+                      items: _serviceRequestNames.map((make) => make.serviceCenterNames)
+                          .toList(),
                       onChanged: (value) {
                         setState(() {
                           _serviceCenter.text = value;
@@ -202,7 +218,7 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
                       ),
                       hintText: "Select specific service",
                       alignment: Alignment.center,
-                      items: dropdownItemList2,
+                      items: specificServiceItemList,
                       onChanged: (value) {
                         setState(() {
                           _specificServices.text = value;
@@ -244,7 +260,7 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
                       ),
                       hintText: "Select Time Slot",
                       alignment: Alignment.center,
-                      items: dropdownItemList2,
+                      items: timeSlotList,
                       onChanged: (value) {
                         setState(() {
                           _timeSlot.text = value;
@@ -295,14 +311,12 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
       child: DateTimePickerWidget(
         selectedDate: selectedDate,
         key: dateTimePickerKey,
-        onDateTimeChanged: (DateTime ) {
+        onDateTimeChanged: (DateTime newDateTime) {
           setState(() {
-            selectedDate = DateTime;
-            _dateTime.text = selectedDate.toString();
+            selectedDate = newDateTime;
+            _dateTime.text = DateFormat('yyyy-MM-dd').format(selectedDate);
           });
-
         },
-
       ),
     );
   }
@@ -317,7 +331,8 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
 
     if (userDetails == null) {
       print('Failed to get user details');
-      showToast("Failed to get user details", false);
+      _showSuccessDialog("Failed to get user details");
+
       return;
     }
 
@@ -326,7 +341,7 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
 
     if (userEmail == null) {
       print('User email not found');
-      showToast("User email not found", false);
+      _showSuccessDialog("User email not found");
       return;
     }
 
@@ -363,28 +378,37 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
       if (response.statusCode == 200) {
         print('Request posted successfully');
         print('Response: ${response.body}');
-        showToast("Request submitted successfully", true);
+        _showSuccessDialog("Request submitted successfully");
       } else {
         print('Failed to post request. Status code: ${response.statusCode}');
         print('Response: ${response.body}');
-        showToast("Failed to submit request", false);
+        _showSuccessDialog("Failed to submit request");
       }
     } catch (e) {
       print('Exception thrown: $e');
-      showToast("Error: $e", false);
+      _showSuccessDialog("Error: $e");
     }
   }
 
-  void showToast(String message, bool isSuccess) {
-    Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: isSuccess ? Colors.green : Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0,
+  void _showSuccessDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Success"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+                Navigator.pop(context); // Go back to the previous screen (ServiceRequestApprovalScreen)
+              },
+              child: Text("Okay"),
+            ),
+          ],
+        );
+      },
     );
-
   }
 
   // Get Vehicle make names
@@ -405,6 +429,29 @@ class _MakeRequestDesignScreenState extends State<MakeRequestDesignScreen> {
       throw Exception('Failed to load data');
     }
   }
+
+  Future<void> _fetchServiceRequestNames() async {
+    try {
+      final String url = 'https://serverbackend-w5ny.onrender.com/profiledetails';
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+        setState(() {
+          _serviceRequestNames.clear();
+          // Assuming the service request names are stored in a key named 'names' in the response data
+          List<dynamic> serviceNames = responseData['names'];
+          _serviceRequestNames = serviceNames.map((name) => ServiceCenterNames.fromJson({'names': name})).toList();
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
 
 //Section Widget
   Widget _buildDepthFrameZero1(BuildContext context) {

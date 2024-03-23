@@ -23,7 +23,7 @@ class GalileoDesignPage extends StatelessWidget {
               child: Column(
                 children: [
                   _buildDepthFrameZero(context),
-                  _buildGalileoDesign(context),
+                  _buildServiceRequestDesign(context),
                   SizedBox(height: 12.v),
                   Container(
                     height: 20.v,
@@ -62,7 +62,7 @@ class GalileoDesignPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildGalileoDesign(BuildContext context) {
+  Widget _buildServiceRequestDesign(BuildContext context) {
     return ListView.separated(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,

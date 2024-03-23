@@ -95,6 +95,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DateTimePickerWidget extends StatefulWidget {
   final DateTime selectedDate;
@@ -130,7 +131,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                " Select date:\n  ${widget.selectedDate.toString().split(' ')[0]}",
+                "Select date: ${widget.selectedDate.toString().split(' ')[0]}",
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
               Icon(
@@ -155,7 +156,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     if (picked != null && picked != widget.selectedDate) {
       widget.onDateTimeChanged(picked);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Selected date: $picked')),
+        SnackBar(content: Text('Selected date: ${DateFormat('yyyy-MM-dd').format(picked)}')),
       );
     }
   }

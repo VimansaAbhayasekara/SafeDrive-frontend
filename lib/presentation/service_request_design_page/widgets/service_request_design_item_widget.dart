@@ -140,10 +140,12 @@ class _ServiceRequestDesignItemWidgetState extends State<ServiceRequestDesignIte
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body);
         print('All service requests: $jsonData');
+
         final List<ServiceRequests> filteredRequests = jsonData
             .map((json) => ServiceRequests.fromJson(json))
-            .where((request) => request.userEmail == userEmail)
+            .where((request) => request.userEmail == userEmail && request.status == "pending") // Add condition for pending status
             .toList();
+
         print('Filtered service requests: $filteredRequests');
 
         if (mounted) {
@@ -153,7 +155,6 @@ class _ServiceRequestDesignItemWidgetState extends State<ServiceRequestDesignIte
             isLoading = false;
           });
         }
-
       } else {
         setState(() {
           isError = true;
