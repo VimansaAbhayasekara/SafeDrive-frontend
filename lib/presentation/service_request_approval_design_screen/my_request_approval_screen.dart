@@ -10,6 +10,7 @@ import 'package:safedrive/core/app_export.dart';
 import 'package:http/http.dart' as http;
 
 
+import '../../services/token_service.dart';
 import '../service_Center_Request_design_container_screen/service_request_design_container_screen.dart';
 import '../service_request_design_page/service_request_design_page.dart';
 
@@ -198,49 +199,61 @@ class _MyRequestApprovalScreenState extends State<MyRequestApprovalScreen> {
 
   /// Section Widget
   Widget _buildProfileDetails(BuildContext context) {
-    return Container(
-      width: double.maxFinite,
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.h,
-        vertical: 8.v,
-      ),
-      decoration: AppDecoration.fillGray,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomImageView(
-            imagePath: ImageConstant.profilePic,
-            height: 100.adaptSize,
-            width: 100.adaptSize,
-            radius: BorderRadius.circular(
-              28.h,
+    return FutureBuilder<Map<String, dynamic>?>(
+      future: TokenService().getUserDetails(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Placeholder while loading
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final userDetails = snapshot.data!;
+          return Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.h,
+              vertical: 8.v,
             ),
-            margin: EdgeInsets.only(bottom: 28.v),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 20.h,
-              top: 5.v,
-              bottom: 33.v,
-            ),
-            child: Column(
+            decoration: AppDecoration.fillGray,
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Alex",
-                  style: CustomTextStyles.titleMediumGray900,
+                CustomImageView(
+                  imagePath: ImageConstant.profilePic,
+                  height: 100.adaptSize,
+                  width: 100.adaptSize,
+                  radius: BorderRadius.circular(
+                    28.h,
+                  ),
+                  margin: EdgeInsets.only(bottom: 28.v),
                 ),
-                Text(
-                  "2019 Honda Accord",
-                  style: theme.textTheme.bodyMedium,
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 20.h,
+                    top: 5.v,
+                    bottom: 33.v,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        userDetails['name'] ?? 'Name not found',
+                        style: CustomTextStyles.titleMediumGray900,
+                      ),
+                      Text(
+                        '${userDetails['province'] ?? 'Province not found'}, ${userDetails['district'] ?? 'District not found'}',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
                 ),
               ],
-
             ),
-
-          ),
-        ],
-      ),
+          );
+        } else {
+          return Text('No data available'); // Placeholder for no data
+        }
+      },
     );
   }
 

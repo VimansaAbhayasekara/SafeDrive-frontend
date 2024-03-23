@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
+import 'package:safedrive/screens/screens.dart';
 import 'package:safedrive/screens/widgets/text_widget.dart';
 
 import '../view/profile_view.dart';
@@ -80,14 +81,14 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            const ListTile(
+            ListTile(
               title: Text('My Vehicle'),
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => SeeAll()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyVehicle()),
+                );
+              },
             ),
             const ListTile(
               title: Text('Notification'),
