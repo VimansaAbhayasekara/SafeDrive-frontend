@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
@@ -543,7 +544,8 @@ class _HomeState extends State<Home> {
               const SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Virus()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => homespare()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
