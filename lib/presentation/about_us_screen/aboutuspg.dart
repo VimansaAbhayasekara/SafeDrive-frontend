@@ -35,7 +35,7 @@ class AboutUsPage extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.asset(
-                  'assets/back.png',
+                  'assets/images/back.png',
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                 ),
@@ -98,13 +98,23 @@ class AboutUsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Column(
               children: [
-                _buildAvatar('assets/ammar.jpeg'),
-                _buildAvatar('assets/vimansa.jpeg'),
-                _buildAvatar('assets/krishan1.jpg'),
-                _buildAvatar('assets/thanuda.jpeg'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildAvatar('assets/images/ammar.jpeg'),
+                    _buildAvatar('assets/images/vimansa.jpeg'),
+                  ],
+                ),
+                SizedBox(height: 10), // Add spacing between the rows
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildAvatar('assets/images/krishan1.jpg'),
+                    _buildAvatar('assets/images/thanuda.jpeg'),
+                  ],
+                ),
               ],
             ),
           ],

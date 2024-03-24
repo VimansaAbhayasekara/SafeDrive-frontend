@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:safedrive/screens/Home.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                 // Navigator.of(context).pop();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => homespare()),
+                  MaterialPageRoute(builder: (context) => Home()),
                 );
               },
               child: Text('OK'),

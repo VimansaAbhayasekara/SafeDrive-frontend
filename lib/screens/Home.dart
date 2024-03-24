@@ -9,6 +9,7 @@ import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
+import 'package:safedrive/screens/vehicle/my_vehicle.dart';
 import 'package:safedrive/screens/widgets/text_widget.dart';
 
 import '../view/profile_view.dart';
@@ -94,6 +95,15 @@ class _HomeState extends State<Home> {
               // },
             ),
             const ListTile(
+              title: Text('My Service'),
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SeeAll()),
+              //   );
+              // },
+            ),
+            const ListTile(
               title: Text('Notification'),
               // onTap: () {
               //   Navigator.push(
@@ -134,10 +144,16 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            ListTile(
-              title: Text('See All'),
-              onTap: () {},
+            const ListTile(
+              title: Text('Settings'),
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SeeAll()),
+              //   );
+              // },
             ),
+
             // Add more list tiles for other navigation items
           ],
         ),
@@ -427,6 +443,10 @@ class _HomeState extends State<Home> {
                         TextButton(
                           onPressed: () {
                             // Handle button tap for account
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileView()));
                           },
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.black,
@@ -579,12 +599,18 @@ class _HomeState extends State<Home> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Drug()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => MyVehicle()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
                 ),
                 child: category("assets/images/capsule.png", "Vehicle", 5),
               ),
@@ -596,24 +622,14 @@ class _HomeState extends State<Home> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2), // Add padding
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ),
                 ),
-                child: category("assets/images/virus.png", "About", 10),
-              ),
-              SizedBox(width: 10), // Add spacing between buttons
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileView()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
-                ),
-                child: category("assets/images/heart.png", "Profile", 10),
+                child: category("assets/images/virus.png", "Service", 1),
               ),
               SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
@@ -626,9 +642,32 @@ class _HomeState extends State<Home> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
                 ),
-                child: category("assets/images/Tip.png", "Tips", 12),
+                child: category("assets/images/heart.png", "BookNow", 1),
+              ),
+              SizedBox(width: 10), // Add spacing between buttons
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TipsPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Color.fromARGB(255, 89, 89, 89), // Set button color
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
+                ),
+                child: category("assets/images/Tip.png", "Tips", 1),
               ),
             ],
           ),
