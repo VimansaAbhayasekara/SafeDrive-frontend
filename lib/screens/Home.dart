@@ -2,11 +2,14 @@ import 'dart:async';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:safedrive/pages/home_page.dart';
+import 'package:safedrive/presentation/about_us_screen/aboutuspg.dart';
+import 'package:safedrive/presentation/help_support_screen/help&supp.dart';
 import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
-import 'package:safedrive/screens/screens.dart';
+import 'package:safedrive/screens/vehicle/my_vehicle.dart';
 import 'package:safedrive/screens/widgets/text_widget.dart';
 
 import '../view/profile_view.dart';
@@ -82,14 +85,23 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               title: Text('My Vehicle'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyVehicle()),
-                );
-              },
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SeeAll()),
+              //   );
+              // },
+            ),
+            const ListTile(
+              title: Text('My Service'),
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SeeAll()),
+              //   );
+              // },
             ),
             const ListTile(
               title: Text('Notification'),
@@ -100,23 +112,27 @@ class _HomeState extends State<Home> {
               //   );
               // },
             ),
-            const ListTile(
+            ListTile(
               title: Text('About Us'),
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => SeeAll()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          AboutUsPage()), // Navigate to AboutUsPage
+                );
+              },
             ),
-            const ListTile(
+            ListTile(
               title: Text('Help & Support'),
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => SeeAll()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HelpSupPage()), // Navigate to HelpSupPage
+                );
+              },
             ),
 
             ListTile(
@@ -128,10 +144,16 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            ListTile(
-              title: Text('See All'),
-              onTap: () {},
+            const ListTile(
+              title: Text('Settings'),
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SeeAll()),
+              //   );
+              // },
             ),
+
             // Add more list tiles for other navigation items
           ],
         ),
@@ -364,36 +386,81 @@ class _HomeState extends State<Home> {
                   )),
               doctorList(),
               Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 400),
-                    opacity: opacity,
-                    child: CurvedNavigationBar(
-                        height: 50,
-                        backgroundColor: Colors.white,
-                        items: const [
-                          Icon(
+                alignment: Alignment.bottomCenter,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 400),
+                  opacity: opacity,
+                  child: Container(
+                    height: 50,
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for home
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.blue,
+                          ),
+                          child: Icon(
                             Icons.home_filled,
-                            color: Colors.blue,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for upload
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => homespare()));
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.upload_file_rounded,
-                            color: Colors.black,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for message
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.message_rounded,
-                            color: Colors.black,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for account
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileView()));
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.account_circle_outlined,
-                            color: Colors.black,
                             size: 30,
                           ),
-                        ]),
-                  ))
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -532,42 +599,37 @@ class _HomeState extends State<Home> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Drug()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => MyVehicle()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
                 ),
                 child: category("assets/images/capsule.png", "Vehicle", 5),
               ),
               const SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => homespare()));
+                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Virus()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2), // Add padding
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ),
                 ),
-                child: category("assets/images/virus.png", "About", 10),
-              ),
-              SizedBox(width: 10), // Add spacing between buttons
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileView()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
-                ),
-                child: category("assets/images/heart.png", "Profile", 10),
+                child: category("assets/images/virus.png", "Service", 1),
               ),
               SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
@@ -580,9 +642,32 @@ class _HomeState extends State<Home> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Color.fromARGB(255, 89, 89, 89), // Set button color
-                  padding: EdgeInsets.all(3), // Add padding
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
                 ),
-                child: category("assets/images/Tip.png", "Tips", 12),
+                child: category("assets/images/heart.png", "BookNow", 1),
+              ),
+              SizedBox(width: 10), // Add spacing between buttons
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TipsPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Color.fromARGB(255, 89, 89, 89), // Set button color
+                  padding: EdgeInsets.all(2),
+                  shape: RoundedRectangleBorder(
+                    // Set button shape
+                    borderRadius: BorderRadius.circular(
+                        0), // Set border radius to 0 for straight edges
+                  ), // Add padding
+                ),
+                child: category("assets/images/Tip.png", "Tips", 1),
               ),
             ],
           ),
