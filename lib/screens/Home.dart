@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:safedrive/pages/home_page.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
@@ -362,36 +363,73 @@ class _HomeState extends State<Home> {
                   )),
               doctorList(),
               Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 400),
-                    opacity: opacity,
-                    child: CurvedNavigationBar(
-                        height: 50,
-                        backgroundColor: Colors.white,
-                        items: const [
-                          Icon(
+                alignment: Alignment.bottomCenter,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 400),
+                  opacity: opacity,
+                  child: Container(
+                    height: 50,
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for home
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.blue,
+                          ),
+                          child: Icon(
                             Icons.home_filled,
-                            color: Colors.blue,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for upload
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.upload_file_rounded,
-                            color: Colors.black,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for message
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.message_rounded,
-                            color: Colors.black,
                             size: 30,
                           ),
-                          Icon(
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle button tap for account
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                          child: Icon(
                             Icons.account_circle_outlined,
-                            color: Colors.black,
                             size: 30,
                           ),
-                        ]),
-                  ))
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
