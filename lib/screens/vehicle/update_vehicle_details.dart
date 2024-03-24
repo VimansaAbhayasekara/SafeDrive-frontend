@@ -21,13 +21,12 @@ class UpdateVehicleDetails extends StatefulWidget {
 }
 
 class _UpdateVehicleDetailsState extends State<UpdateVehicleDetails> {
-
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _updateDateController = TextEditingController();
   final TextEditingController _renewalDateController = TextEditingController();
 
-   DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   Future<void> _selectDate(
       BuildContext context, TextEditingController _controller) async {
@@ -45,11 +44,13 @@ class _UpdateVehicleDetailsState extends State<UpdateVehicleDetails> {
     }
   }
 
-   @override
+  @override
   void initState() {
     _descriptionController.text = widget.vehicleDetails.description.toString();
-    _updateDateController.text =  DateFormat.yMMMMEEEEd().format(DateTime.parse(widget.vehicleDetails.installationDate.toString()));
-    _renewalDateController.text =  DateFormat.yMMMMEEEEd().format(DateTime.parse(widget.vehicleDetails.renewalDate.toString()));
+    _updateDateController.text = DateFormat.yMMMMEEEEd().format(
+        DateTime.parse(widget.vehicleDetails.installationDate.toString()));
+    _renewalDateController.text = DateFormat.yMMMMEEEEd()
+        .format(DateTime.parse(widget.vehicleDetails.renewalDate.toString()));
     super.initState();
   }
 
@@ -61,16 +62,18 @@ class _UpdateVehicleDetailsState extends State<UpdateVehicleDetails> {
     _renewalDateController.dispose();
   }
 
-   Future<void> handleForm() async {
+  Future<void> handleForm() async {
     if (_formKey.currentState!.validate()) {
       APIResponse response = await VehicleDetailsRepository().update(
         widget.vehicleDetails.id.toString(),
         widget.vehicleDetails.category.toString(),
         _descriptionController.text,
-        DateFormat('yyyy-MM-dd').format(DateFormat('EEEE, MMMM dd, yyyy').parse(_updateDateController.text)),
-        DateFormat('yyyy-MM-dd').format(DateFormat('EEEE, MMMM dd, yyyy').parse(_renewalDateController.text)),
+        DateFormat('yyyy-MM-dd').format(DateFormat('EEEE, MMMM dd, yyyy')
+            .parse(_updateDateController.text)),
+        DateFormat('yyyy-MM-dd').format(DateFormat('EEEE, MMMM dd, yyyy')
+            .parse(_renewalDateController.text)),
       );
-      if(response.status) {
+      if (response.status) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(response.message),
@@ -86,7 +89,7 @@ class _UpdateVehicleDetailsState extends State<UpdateVehicleDetails> {
       }
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

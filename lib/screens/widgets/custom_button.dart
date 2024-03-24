@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-
   final String title;
   final double fontSize;
   final void Function()? onPressed;

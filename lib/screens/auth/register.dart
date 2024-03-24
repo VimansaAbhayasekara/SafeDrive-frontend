@@ -16,6 +16,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
+final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -38,6 +39,7 @@ class _RegisterState extends State<Register> {
   Future<void> handleForm() async {
     if (_formKey.currentState!.validate()) {
       APIResponse response = await AuthRepository().register(
+        _nameController.text,
         _emailController.text,
         _passwordController.text,
         _accountTypeController.text,
@@ -66,6 +68,7 @@ class _RegisterState extends State<Register> {
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -174,6 +177,19 @@ class _RegisterState extends State<Register> {
                       {'name': "Supplier", 'value': "Supplier"},
                       {'name': "Service Center", 'value': "Service Center"}
                     ],
+                  ),
+                  SizedBox(
+                    height: size.height * 0.020,
+                  ),
+                  CustomInput(
+                    hintLabel: "Name",
+                    controller: _nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Name is required';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: size.height * 0.020,
@@ -300,7 +316,7 @@ class _RegisterState extends State<Register> {
                       if (value == null || value.isEmpty) {
                         return 'Confirm Password is required';
                       }
-                      if(value != _passwordController.text) {
+                      if (value != _passwordController.text) {
                         return 'Confirm Password is not match';
                       }
                       return null;

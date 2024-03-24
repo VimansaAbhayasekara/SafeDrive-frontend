@@ -13,6 +13,11 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.9
+  web_socket_channel: ^2.4.0
+  shared_preferences: ^2.2.2
+  fluttertoast: ^8.2.4
+  cached_network_image: ^3.3.0
   google_fonts: ^6.1.0
   http: ^1.2.0
   flutter_dotenv: ^5.1.0
@@ -24,6 +29,10 @@ dependencies:
   firebase_messaging: ^14.7.16
   flutter_local_notifications: ^16.3.2
   provider: ^6.1.2
+  cloud_firestore: ^4.15.8
+  curved_navigation_bar: ^1.0.3
+  syncfusion_flutter_datepicker: ^20.3.60
+  flutter_floating_bottom_bar: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +48,15 @@ flutter:
     - assets/.env
     - assets/images/
     - assets/provinces.json
+    - assets/
+    - assets/images/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/InterBold.ttf
+          weight: 700
+        - asset: assets/fonts/InterMedium.ttf
+          weight: 500
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400

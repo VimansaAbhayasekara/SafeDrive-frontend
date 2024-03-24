@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
       );
       if (response.status) {
         Navigator.of(context)
-            .pushNamedAndRemoveUntil('/my-vehicle', (route) => false);
+            .pushNamedAndRemoveUntil('/Home', (route) => false);
       } else {
         setState(() {
           error = response.message;
