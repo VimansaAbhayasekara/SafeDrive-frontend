@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:safedrive/presentation/service_request_design_page/widgets/serviceRequests.dart';
-import 'package:safedrive/services/services.dart';
 import 'package:safedrive/widgets/approve_request_app_bar/custom_app_bar.dart';
 import 'package:safedrive/widgets/approve_request_app_bar/appbar_leading_image.dart';
 import 'package:safedrive/widgets/approve_request_app_bar/appbar_title.dart';
@@ -9,23 +8,27 @@ import 'package:safedrive/widgets/approve_request_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:safedrive/core/app_export.dart';
 import 'package:http/http.dart' as http;
+
+
+import '../../services/token_service.dart';
+import '../service_Center_Request_design_container_screen/service_request_design_container_screen.dart';
 import '../service_request_design_page/service_request_design_page.dart';
 
-class ServiceRequestApprovalScreen extends StatefulWidget {
+class MyRequestApprovalScreen extends StatefulWidget {
 
   final ServiceRequests serviceRequests;
 
-  const ServiceRequestApprovalScreen({Key? key,required this.serviceRequests,
+  const MyRequestApprovalScreen({Key? key,required this.serviceRequests,
   })
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
-  State<ServiceRequestApprovalScreen> createState() => _ServiceRequestApprovalScreenState();
+  State<MyRequestApprovalScreen> createState() => _MyRequestApprovalScreenState();
 }
 
-class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScreen> {
+class _MyRequestApprovalScreenState extends State<MyRequestApprovalScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +88,6 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
                   ),
                 ),
 
-
                 SizedBox(height: 20.v),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -127,8 +129,8 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
                   ),
                 ),
 
-                SizedBox(height: 30.v),
-                _buildBottomButtons(context),
+                SizedBox(height: 40.v),
+                // _buildBottomButtons(context),
                 // SizedBox(height: 12.v),
                 _buildChat(context),
 
@@ -142,7 +144,6 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
   /// Section Widget
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-
     return CustomAppBar(
       leadingWidth: 40.h,
       leading: GestureDetector(
@@ -246,16 +247,9 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
           CustomElevatedButton(
             width: 169.h,
             text: "Decline",
-            margin: EdgeInsets.only(left: 11.h),
-            buttonStyle: CustomButtonStyles.fillBlue,
-            buttonTextStyle: theme.textTheme.titleMedium!,
-            onPressed: () {
-              // Call the function to update status here
-              deleteRequestDetails(widget.serviceRequests);
-            },
           ),
           CustomElevatedButton(
-            width: 169.h,
+            width: 176.h,
             text: "Approve",
             margin: EdgeInsets.only(left: 11.h),
             buttonStyle: CustomButtonStyles.fillBlue,
@@ -330,7 +324,7 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
       if (response.statusCode == 200) {
         // Status updated successfully
         print('Status updated successfully!');
-        _showSuccessDialog("Request approved successfully!");
+        _showSuccessDialog();
       } else {
         // Error occurred while updating status
         print('Failed to update status: ${response.statusCode}');
@@ -340,13 +334,13 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
       print('Error updating status: $error');
     });
   }
-  void _showSuccessDialog(String message) {
+  void _showSuccessDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Success"),
-          content: Text(message),
+          content: Text("Request approved successfully!"),
           actions: [
             TextButton(
               onPressed: () {
@@ -359,39 +353,6 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
         );
       },
     );
-  }
-
-  // Function to send DELETE request to decline the service request
-  void deleteRequestDetails(ServiceRequests requestData) {
-    String url = 'https://serverbackend-w5ny.onrender.com/servicerequest'; // Replace with your actual endpoint
-
-    Map<String, dynamic> requestBody = {
-      'vehicleMake': requestData.vehicleMake,
-      'vehicleModel': requestData.vehicleModel,
-      'serviceCenter': requestData.serviceCenter,
-      'specificServices': requestData.specificServices,
-      'dateTime': requestData.dateTime,
-      'timeSlot': requestData.timeSlot,
-      'userEmail': requestData.userEmail,
-      'status': requestData.status,
-    };
-
-    http.delete(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(requestBody),
-    ).then((response) {
-      if (response.statusCode == 200) {
-        print('Service request deleted successfully');
-        _showSuccessDialog("Request deleted successfully!");
-      } else {
-        print('Error deleting service request: ${response.body}');
-      }
-    }).catchError((error) {
-      print('Error deleting service request: $error');
-    });
   }
 
 }

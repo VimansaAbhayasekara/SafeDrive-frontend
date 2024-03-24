@@ -1,4 +1,6 @@
 
+import 'package:safedrive/presentation/service_request_design_page/widgets/my_request_design_screen.dart';
+import 'package:safedrive/view/profile_view.dart';
 import 'package:safedrive/widgets/service_request_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:safedrive/core/app_export.dart';
@@ -6,8 +8,8 @@ import 'package:safedrive/core/app_export.dart';
 import '../service_request_design_page/service_request_design_page.dart';
 
 // ignore_for_file: must_be_immutable
-class GalileoDesignContainerScreen extends StatelessWidget {
-  GalileoDesignContainerScreen({Key? key}) : super(key: key);
+class ServiceRequestDesignContainerScreen extends StatelessWidget {
+  ServiceRequestDesignContainerScreen({Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -46,9 +48,9 @@ class GalileoDesignContainerScreen extends StatelessWidget {
       case BottomBarEnum.Chat:
         return "/";
       case BottomBarEnum.Myrequests:
-        return "/";
+        return ServiceRequestAppRoutes.myRequestDesignScreen;
       case BottomBarEnum.Account:
-        return "/";
+        return ServiceRequestAppRoutes.myProfileViewScreen;
       default:
         return "/";
     }
@@ -59,6 +61,13 @@ class GalileoDesignContainerScreen extends StatelessWidget {
     switch (currentRoute) {
       case ServiceRequestAppRoutes.galileoDesignPage:
         return GalileoDesignPage();
+
+      case ServiceRequestAppRoutes.myRequestDesignScreen:
+        return MyRequestDesignScreen() ;
+
+      case ServiceRequestAppRoutes.myProfileViewScreen:
+        return ProfileView();
+
       default:
         return DefaultWidget();
     }

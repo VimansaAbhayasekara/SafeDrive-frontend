@@ -5,6 +5,8 @@ class ServiceRequests {
   final String specificServices;
   final String dateTime;
   final String timeSlot;
+  final String userEmail;
+  final String status;
 
   ServiceRequests({
     required this.vehicleMake,
@@ -13,6 +15,8 @@ class ServiceRequests {
     required this.specificServices,
     required this.dateTime,
     required this.timeSlot,
+    required this.userEmail,
+    required this.status,
   });
 
   factory ServiceRequests.fromJson(Map<String, dynamic> json) {
@@ -23,6 +27,8 @@ class ServiceRequests {
       specificServices: json['specificServices'] ?? '', // Provide a default empty string if 'specificServices' is null
       dateTime: json['dateTime'] ?? '', // Provide a default empty string if 'dateTime' is null
       timeSlot: json['timeSlot'] ?? '', // Provide a default empty string if 'timeSlot' is null
+      userEmail: json['userEmail'] ?? '',
+      status: json['status']??'',
     );
   }
 }

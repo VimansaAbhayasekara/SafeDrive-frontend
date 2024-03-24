@@ -57,7 +57,7 @@ flutter:
     - assets/images/
     - assets/provinces.json
     - assets/
-    - assets/images/
+
 
   fonts:
     - family: Inter
