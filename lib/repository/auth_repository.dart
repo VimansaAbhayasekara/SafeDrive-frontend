@@ -56,6 +56,7 @@ class AuthRepository {
   }
 
   Future<APIResponse> register(
+    String name,
     String email,
     String password,
     String role,
@@ -68,6 +69,7 @@ class AuthRepository {
       getUrl(url: 'register'),
       headers: header,
       body: jsonEncode({
+        "name": name,
         "email": email,
         "password": password,
         "role": role,

@@ -34,12 +34,19 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   syncfusion_flutter_datepicker: ^20.3.60
   flutter_floating_bottom_bar: ^1.1.0
+  firebase_auth: ^4.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  image_picker: ^1.0.7
+  google_nav_bar: ^5.0.6
+  firebase_database: ^10.4.8
+  firebase_storage: ^11.6.9
+  awesome_dialog: ^3.2.0
+  logger: ^2.1.0
 
 flutter:
 

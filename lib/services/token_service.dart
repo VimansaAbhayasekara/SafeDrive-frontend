@@ -50,6 +50,7 @@ class TokenService {
     Auth? auth = await getAuth();
     if (auth != null) {
       return {
+        'name': auth.name,
         'email': auth.email,
         'password': auth.password,
         'role': auth.role,
@@ -61,7 +62,6 @@ class TokenService {
     }
     return null;
   }
-
 
   Future<bool> validateToken() async {
     String? token;
