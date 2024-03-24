@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safedrive/models/models.dart';
@@ -49,9 +50,18 @@ final TextEditingController _nameController = TextEditingController();
         _businessLicenseNumberController.text,
       );
 
+
+
       if (response.status) {
+        CollectionReference collref = FirebaseFirestore.instance.collection('user');
+        await collref.add({
+          'email' : _emailController.text,
+          'AccType': _accountTypeController.text,
+          // Add other fields as necessary
+        });
         Navigator.of(context)
             .pushNamedAndRemoveUntil('/login', (route) => false);
+
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.message),
@@ -339,7 +349,7 @@ final TextEditingController _nameController = TextEditingController();
                   ),
                   CustomButton(
                     title: "Sign Up",
-                    onPressed: handleForm,
+                    onPressed: handleForm
                   ),
                   SizedBox(
                     height: size.height * 0.020,
