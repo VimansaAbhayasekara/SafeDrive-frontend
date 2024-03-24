@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:safedrive/pages/home_page.dart';
+import 'package:safedrive/presentation/about_us_screen/aboutuspg.dart';
+import 'package:safedrive/presentation/help_support_screen/help&supp.dart';
+import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
@@ -99,23 +102,27 @@ class _HomeState extends State<Home> {
               //   );
               // },
             ),
-            const ListTile(
+            ListTile(
               title: Text('About Us'),
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => SeeAll()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          AboutUsPage()), // Navigate to AboutUsPage
+                );
+              },
             ),
-            const ListTile(
+            ListTile(
               title: Text('Help & Support'),
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => SeeAll()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HelpSupPage()), // Navigate to HelpSupPage
+                );
+              },
             ),
 
             ListTile(
@@ -388,6 +395,10 @@ class _HomeState extends State<Home> {
                         TextButton(
                           onPressed: () {
                             // Handle button tap for upload
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => homespare()));
                           },
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.black,
