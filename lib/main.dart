@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safedrive/common/theme.dart';
-import 'package:safedrive/presentation/service_center_request_design_container_screen/service_request_design_container_screen.dart';
 import 'package:safedrive/screens/Home.dart';
 import 'package:safedrive/services/services.dart';
 
@@ -51,37 +51,15 @@ class MyApp extends StatelessWidget {
         '/welcome': (context) => const Welcome(),
         '/login': (context) => const Login(),
         '/register': (context) => const Register(),
-        '/Home': (context) => Home(),
+        '/Home': (context) => const Home(),
       },
       initialRoute: '/welcome',
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:safe_drive/view/profile_view.dart';
-//
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//         useMaterial3: true,
-//       ),
-//       home:  const ProfileView(),
-//     );
-//   }
-// }
-//
-
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+
+
+
+

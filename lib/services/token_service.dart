@@ -63,7 +63,6 @@ class TokenService {
     return null;
   }
 
-
   Future<bool> validateToken() async {
     String? token;
     bool status = false;
