@@ -32,6 +32,9 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return Sizer(builder: (context,orientation,deviceType)
+
+      {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,6 +134,7 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
         ],
       ),
     );
+      });
   }
 
 

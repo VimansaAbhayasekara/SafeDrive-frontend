@@ -656,6 +656,8 @@ class _HomeState extends State<Home> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => TipsPage()));
+
+                  //GalileoDesignPage()
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
