@@ -133,6 +133,7 @@ class _ServiceRequestDesignItemWidgetState extends State<ServiceRequestDesignIte
     }
 
     final String userEmail = userDetails['email'];
+    final String userRole = userDetails['role'];
 
     final String url = 'https://serverbackend-w5ny.onrender.com/servicerequest';
     try {
@@ -141,10 +142,20 @@ class _ServiceRequestDesignItemWidgetState extends State<ServiceRequestDesignIte
         final List<dynamic> jsonData = jsonDecode(response.body);
         print('All service requests: $jsonData');
 
-        final List<ServiceRequests> filteredRequests = jsonData
-            .map((json) => ServiceRequests.fromJson(json))
-            .where((request) => request.userEmail == userEmail && request.status == "pending") // Add condition for pending status
-            .toList();
+        List<ServiceRequests> filteredRequests;
+        if (userRole == 'Vehicle Owner') {
+          // Display all types of requests for Vehicle Owners
+          filteredRequests = jsonData
+              .map((json) => ServiceRequests.fromJson(json))
+              .where((request) => request.userEmail == userEmail)
+              .toList();
+        } else {
+          // Display all types of requests for other roles
+          filteredRequests = jsonData
+              .map((json) => ServiceRequests.fromJson(json))
+              .where((request) => request.userEmail == userEmail)
+              .toList();
+        }
 
         print('Filtered service requests: $filteredRequests');
 

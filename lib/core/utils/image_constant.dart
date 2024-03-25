@@ -29,7 +29,7 @@ class ImageConstant {
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 
-  static String imgNavMyRequests = '$imagePath/img_nav_my_requests.svg';
+  static String imgNavMyRequests = '$imagePath/img_nav_categories.svg';
 
   // Make Request Screen images
   static String imgCross = '$imagePath/img_cross.svg';
