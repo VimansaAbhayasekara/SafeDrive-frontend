@@ -1,6 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safedrive/presentation/post_wall_design_container_screen/post_wall_design_container_screen.dart';
+import 'package:safedrive/services/token_service.dart';
 import '../../models/models.dart';
 import '../../repository/repository.dart';
 import '../widgets/widgets.dart';
@@ -32,8 +34,29 @@ class _LoginState extends State<Login> {
         token,
       );
       if (response.status) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/Home', (route) => false);
+        final userDetails = await TokenService().getUserDetails();
+        if (userDetails != null && userDetails['role'] != null) {
+          String userRole = userDetails['role'];
+          print('User role: $userRole'); // Debug statement
+
+          // Redirect based on user role using if-else statements
+          if (userRole == 'Service Center') {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/ServiceRequestDesignContainerScreen', (route) => false);
+          } else if (userRole == 'Vehicle Owner') {
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/Home', (route) => false);
+          } else if (userRole == 'Supplier') {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/PostWallDesignContainerScreen', (route) => false);
+          } else {
+            // Redirect to a default page if role is not recognized
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/Home', (route) => false);
+          }
+        } else {
+          setState(() {});
+        }
       } else {
         setState(() {
           error = response.message;

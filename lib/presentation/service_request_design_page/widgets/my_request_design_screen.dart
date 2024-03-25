@@ -12,8 +12,8 @@ import '../../service_request_approval_design_screen/service_request_approval_de
 class MyRequestDesignScreen extends StatefulWidget {
   const MyRequestDesignScreen({Key? key})
       : super(
-    key: key,
-  );
+          key: key,
+        );
 
   @override
   State<MyRequestDesignScreen> createState() => _MyRequestDesignState();
@@ -32,108 +32,108 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 8.v),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 130.h, vertical: 30.v),
-            child: Text(
-              "My Request",
-              style: CustomTextStyles.titleMediumBold,
+    return Sizer(builder: (context, orientation, deviceType) {
+      return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 8.v),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 130.h, vertical: 30.v),
+              child: Text(
+                "My Request",
+                style: CustomTextStyles.titleMediumBold,
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: ListView.builder(
-              itemCount: serviceRequests.length,
-              itemBuilder: (context, index) {
-                ServiceRequests serviceRequest = serviceRequests[index];
-                return GestureDetector(
-                  onTap: () {
-                    // Navigate to serviceRequestApprovalScreen with selected service request data
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyRequestApprovalScreen(
-                          serviceRequests: serviceRequests[index],
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: ListView.builder(
+                itemCount: serviceRequests.length,
+                itemBuilder: (context, index) {
+                  ServiceRequests serviceRequest = serviceRequests[index];
+                  return GestureDetector(
+                    onTap: () {
+                      // Navigate to serviceRequestApprovalScreen with selected service request data
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyRequestApprovalScreen(
+                            serviceRequests: serviceRequests[index],
+                          ),
                         ),
+                      );
+                    },
+                    child: Container(
+                      width: double.maxFinite,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.h,
+                        vertical: 12.v,
                       ),
-                    );
-                  },
-                  child: Container(
-                    width: double.maxFinite,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.h,
-                      vertical: 12.v,
-                    ),
-                    decoration: AppDecoration.fillWhiteA,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomImageView(
-                          imagePath: ImageConstant.imgDepth3Frame0,
-                          height: 72.v,
-                          width: 115.h,
-                          radius: BorderRadius.circular(
-                            8.h,
+                      decoration: AppDecoration.fillWhiteA,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomImageView(
+                            imagePath: ImageConstant.imgDepth3Frame0,
+                            height: 72.v,
+                            width: 115.h,
+                            radius: BorderRadius.circular(
+                              8.h,
+                            ),
+                            margin: EdgeInsets.only(bottom: 4.v),
                           ),
-                          margin: EdgeInsets.only(bottom: 4.v),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 16.h,
-                            bottom: 10.v,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                serviceRequest.specificServices,
-                                style: theme.textTheme.titleMedium,
-                              ),
-                              Text(
-                                "${serviceRequest.vehicleMake} ${serviceRequest.vehicleModel}",
-                                style: theme.textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 44.v),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 3.h,
-                            vertical: 5.v,
-                          ),
-                          decoration: AppDecoration.fillBlueGray.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder12,
-                          ),
-                          child: Container(
-                            width: 85.h,
-                            padding: EdgeInsets.symmetric(vertical: 1.v),
-                            decoration: AppDecoration.fillBlueGray,
-                            child: Text(
-                              serviceRequest.dateTime,
-                              style: CustomTextStyles.titleSmallGray900Medium,
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 16.h,
+                              bottom: 10.v,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  serviceRequest.specificServices,
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                                Text(
+                                  "${serviceRequest.vehicleMake} ${serviceRequest.vehicleModel}",
+                                  style: theme.textTheme.bodyMedium,
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 44.v),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 3.h,
+                              vertical: 5.v,
+                            ),
+                            decoration: AppDecoration.fillBlueGray.copyWith(
+                              borderRadius: BorderRadiusStyle.roundedBorder12,
+                            ),
+                            child: Container(
+                              width: 85.h,
+                              padding: EdgeInsets.symmetric(vertical: 1.v),
+                              decoration: AppDecoration.fillBlueGray,
+                              child: Text(
+                                serviceRequest.dateTime,
+                                style: CustomTextStyles.titleSmallGray900Medium,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
-
-
 
   Future<void> fetchServiceRequests() async {
     setState(() {
@@ -151,7 +151,8 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
     }
 
     final String userEmail = userDetails['email'];
-    final String userRole = userDetails['role']; // Assuming role is included in userDetails
+    final String userRole =
+        userDetails['role']; // Assuming role is included in userDetails
     print(userRole);
     final String url = 'https://serverbackend-w5ny.onrender.com/servicerequest';
     try {
@@ -160,21 +161,22 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
         final List<dynamic> jsonData = jsonDecode(response.body);
         print('All service requests: $jsonData');
 
-        List<ServiceRequests> filteredRequests = []; // Initializing with an empty list
+        List<ServiceRequests> filteredRequests =
+            []; // Initializing with an empty list
 
         if (userRole == 'Service Center') {
           // Fetch only approved requests for Service Center
           filteredRequests = jsonData
               .map((json) => ServiceRequests.fromJson(json))
               .where((request) =>
-          request.userEmail == userEmail && request.status == "approved")
+                  request.userEmail == userEmail &&
+                  request.status == "approved")
               .toList();
         } else if (userRole == 'Vehicle Owner') {
           // Fetch all requests for Vehicle User without checking status
           filteredRequests = jsonData
               .map((json) => ServiceRequests.fromJson(json))
-              .where((request) =>
-          request.userEmail == userEmail)
+              .where((request) => request.userEmail == userEmail)
               .toList();
         }
 
@@ -201,6 +203,4 @@ class _MyRequestDesignState extends State<MyRequestDesignScreen> {
       });
     }
   }
-
 }
-

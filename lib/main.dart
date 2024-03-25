@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:safedrive/common/theme.dart';
+import 'package:safedrive/presentation/post_wall_design_container_screen/post_wall_design_container_screen.dart';
+import 'package:safedrive/presentation/service_center_request_design_container_screen/service_request_design_container_screen.dart';
 import 'package:safedrive/screens/Home.dart';
 import 'package:safedrive/services/services.dart';
 
@@ -48,18 +50,50 @@ class MyApp extends StatelessWidget {
       theme: light,
       themeMode: ThemeMode.light,
       routes: {
-        '/welcome': (context) => const Welcome(),
+        '/welcome': (context) => Welcome(),
         '/login': (context) => const Login(),
         '/register': (context) => const Register(),
         '/Home': (context) => const Home(),
+
+        '/ServiceRequestDesignContainerScreen': (context) =>
+            ServiceRequestDesignContainerScreen(), // Define other routes as needed
+        '/vehicleOwnerPage': (context) => Home(),
+        '/PostWallDesignContainerScreen': (context) =>
+            PostWallDesignContainerScreen(),
       },
       initialRoute: '/welcome',
     );
   }
 }
+
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:safedrive/firebase_options.dart';
+// import 'package:safedrive/screens/Home.dart';
 
+// // Updated import
+// import 'package:safedrive/services/auth/auth_service.dart';
 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//   runApp(ChangeNotifierProvider(
+//     create: (context) => AuthService(),
+//     child: const MyApp(),
+//   ));
+// }
 
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key});
 
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Home(), // No need to use AuthGate anymore, directly set HomePage
+//     );
+//   }
+// }

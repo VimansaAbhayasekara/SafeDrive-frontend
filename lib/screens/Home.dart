@@ -7,6 +7,10 @@ import 'package:safedrive/presentation/about_us_screen/aboutuspg.dart';
 import 'package:safedrive/presentation/help_support_screen/help&supp.dart';
 import 'package:safedrive/presentation/image_upload_screen/homespare.dart';
 import 'package:safedrive/presentation/make_request_design_screen/make_request_design_screen.dart';
+import 'package:safedrive/presentation/service_center_request_design_container_screen/service_request_design_container_screen.dart';
+import 'package:safedrive/presentation/service_request_design_page/service_request_design_page.dart';
+import 'package:safedrive/presentation/service_request_design_page/widgets/my_request_design_screen.dart';
+import 'package:safedrive/presentation/service_request_design_page/widgets/service_request_design_item_widget.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
 import 'package:safedrive/screens/vehicle/my_vehicle.dart';
@@ -599,8 +603,8 @@ class _HomeState extends State<Home> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => MyVehicle()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyVehicle()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
@@ -617,7 +621,10 @@ class _HomeState extends State<Home> {
               const SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Virus()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GalileoDesignPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
@@ -629,7 +636,7 @@ class _HomeState extends State<Home> {
                         0), // Set border radius to 0 for straight edges
                   ),
                 ),
-                child: category("assets/images/virus.png", "Service", 1),
+                child: category("assets/images/virus.png", "Request", 1),
               ),
               SizedBox(width: 10), // Add spacing between buttons
               ElevatedButton(
