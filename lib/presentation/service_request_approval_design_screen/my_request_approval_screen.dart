@@ -339,15 +339,15 @@ class _MyRequestApprovalScreenState extends State<MyRequestApprovalScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Success"),
-          content: Text("Request approved successfully!"),
+          title: const Text("Success"),
+          content: const Text("Request approved successfully!"),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Close the dialog
                 // Navigator.pop(context); // Go back to the previous screen (ServiceRequestApprovalScreen)
               },
-              child: Text("Okay"),
+              child: const Text("Okay"),
             ),
           ],
         );

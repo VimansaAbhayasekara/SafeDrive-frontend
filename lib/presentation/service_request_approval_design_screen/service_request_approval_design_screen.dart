@@ -236,37 +236,57 @@ class _ServiceRequestApprovalScreenState extends State<ServiceRequestApprovalScr
 
   /// Section Widget
   Widget _buildBottomButtons(BuildContext context) {
+    return FutureBuilder<Map<String, dynamic>?>(
+      future: TokenService().getUserDetails(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Placeholder while loading
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final userDetails = snapshot.data!;
+          String userRole = userDetails['role'] ?? ''; // Get user's role
 
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomElevatedButton(
-            width: 169.h,
-            text: "Decline",
-            margin: EdgeInsets.only(left: 11.h),
-            buttonStyle: CustomButtonStyles.fillBlue,
-            buttonTextStyle: theme.textTheme.titleMedium!,
-            onPressed: () {
-              // Call the function to update status here
-              deleteRequestDetails(widget.serviceRequests);
-            },
-          ),
-          CustomElevatedButton(
-            width: 169.h,
-            text: "Approve",
-            margin: EdgeInsets.only(left: 11.h),
-            buttonStyle: CustomButtonStyles.fillBlue,
-            buttonTextStyle: theme.textTheme.titleMedium!,
-            onPressed: () {
-              // Call the function to update status here
-              updateStatus(widget.serviceRequests);
-            },
-          ),
-        ],
-      ),
+          // Check if the user's role is 'Service Center'
+          if (userRole == 'Service Center') {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomElevatedButton(
+                    width: 169.h,
+                    text: "Decline",
+                    margin: EdgeInsets.only(left: 11.h),
+                    buttonStyle: CustomButtonStyles.fillBlue,
+                    buttonTextStyle: theme.textTheme.titleMedium!,
+                    onPressed: () {
+                      // Call the function to update status here
+                      deleteRequestDetails(widget.serviceRequests);
+                    },
+                  ),
+                  CustomElevatedButton(
+                    width: 169.h,
+                    text: "Approve",
+                    margin: EdgeInsets.only(left: 11.h),
+                    buttonStyle: CustomButtonStyles.fillBlue,
+                    buttonTextStyle: theme.textTheme.titleMedium!,
+                    onPressed: () {
+                      // Call the function to update status here
+                      updateStatus(widget.serviceRequests);
+                    },
+                  ),
+                ],
+              ),
+            );
+          } else {
+            // If the user's role is not 'Service Center', return an empty container
+            return Container();
+          }
+        } else {
+          return Text('No data available'); // Placeholder for no data
+        }
+      },
     );
   }
 

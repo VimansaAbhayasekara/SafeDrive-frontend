@@ -14,19 +14,16 @@ class PostWallDesignContainerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Sizer(builder: (context, orientation, deviceType)
-    {
+    return Sizer(builder: (context, orientation, deviceType) {
       return SafeArea(
           child: Scaffold(
               body: Navigator(
                   key: navigatorKey,
                   initialRoute: AppRoutes.postWallDesignTabContainerPage,
-                  onGenerateRoute: (routeSetting) =>
-                      PageRouteBuilder(
-                          pageBuilder: (ctx, ani, ani1) =>
-                              getCurrentPage(routeSetting.name!),
-                          transitionDuration: const Duration(seconds: 0))),
+                  onGenerateRoute: (routeSetting) => PageRouteBuilder(
+                      pageBuilder: (ctx, ani, ani1) =>
+                          getCurrentPage(routeSetting.name!),
+                      transitionDuration: const Duration(seconds: 0))),
               bottomNavigationBar: _buildBottomBar(context)));
     });
   }
@@ -46,6 +43,7 @@ class PostWallDesignContainerScreen extends StatelessWidget {
       case BottomBarEnum.Categories:
         return "/";
       case BottomBarEnum.Chat:
+        // return AppRoutes.ChatPage;
         return "/";
       case BottomBarEnum.Account:
         return AppRoutes.profileViewScreen;

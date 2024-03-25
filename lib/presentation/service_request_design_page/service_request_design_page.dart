@@ -12,6 +12,8 @@ class GalileoDesignPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    return Sizer(builder: (context, orientation, deviceType)
+    {
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -39,6 +41,8 @@ class GalileoDesignPage extends StatelessWidget {
         ),
       ),
     );
+
+    });
   }
 
   /// Section Widget
