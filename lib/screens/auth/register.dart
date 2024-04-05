@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
-final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -28,6 +29,13 @@ final TextEditingController _nameController = TextEditingController();
   final TextEditingController _districtController = TextEditingController();
   final TextEditingController _businessLicenseNumberController =
       TextEditingController();
+
+  String generateRandomString(int length) {
+    const charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    Random random = Random();
+    return List.generate(
+        length, (index) => charset[random.nextInt(charset.length)]).join();
+  }
 
   bool isVisible = true;
   bool confirmPassIsVisible = true;
@@ -50,18 +58,19 @@ final TextEditingController _nameController = TextEditingController();
         _businessLicenseNumberController.text,
       );
 
-
-
       if (response.status) {
-        CollectionReference collref = FirebaseFirestore.instance.collection('user');
+        String randomUid = generateRandomString(28);
+
+        CollectionReference collref =
+            FirebaseFirestore.instance.collection('user');
         await collref.add({
-          'email' : _emailController.text,
+          'email': _emailController.text,
           'AccType': _accountTypeController.text,
+          'uid': randomUid,
           // Add other fields as necessary
         });
         Navigator.of(context)
             .pushNamedAndRemoveUntil('/login', (route) => false);
-
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.message),
@@ -347,10 +356,7 @@ final TextEditingController _nameController = TextEditingController();
                   SizedBox(
                     height: size.height * 0.020,
                   ),
-                  CustomButton(
-                    title: "Sign Up",
-                    onPressed: handleForm
-                  ),
+                  CustomButton(title: "Sign Up", onPressed: handleForm),
                   SizedBox(
                     height: size.height * 0.020,
                   ),

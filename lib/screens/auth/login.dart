@@ -41,8 +41,8 @@ class _LoginState extends State<Login> {
 
           // Redirect based on user role using if-else statements
           if (userRole == 'Service Center') {
-            // Navigator.of(context).pushNamedAndRemoveUntil(
-            //     '/ServiceRequestDesignContainerScreen', (route) => false);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/GalileoDesignPage', (route) => false);
           } else if (userRole == 'Vehicle Owner') {
             Navigator.of(context)
                 .pushNamedAndRemoveUntil('/Home', (route) => false);

@@ -55,8 +55,9 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const Login(),
         '/register': (context) => const Register(),
         '/Home': (context) => Home(),
-        '/GalileoDesignPage()': (context) =>
-            GalileoDesignPage(), // Define other routes as needed
+        '/GalileoDesignPage': (context) =>
+            const GalileoDesignPage(), // Define other routes as needed
+
         '/PostWallDesignContainerScreen': (context) =>
             PostWallDesignContainerScreen(),
       },

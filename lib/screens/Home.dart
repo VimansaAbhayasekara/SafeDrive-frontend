@@ -13,6 +13,7 @@ import 'package:safedrive/presentation/service_request_design_page/widgets/my_re
 import 'package:safedrive/presentation/service_request_design_page/widgets/service_request_design_item_widget.dart';
 import 'package:safedrive/res/lists.dart';
 import 'package:safedrive/screens/Tip.dart';
+import 'package:safedrive/screens/auth/login.dart';
 import 'package:safedrive/screens/vehicle/my_vehicle.dart';
 import 'package:safedrive/screens/widgets/text_widget.dart';
 
@@ -59,13 +60,13 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.notifications,
+              Icons.logout_outlined,
               size: 30,
               color: Colors.white,
             ), // Add your notification icon here
             onPressed: () {
-              // Add onPressed functionality for the notification icon
-              // For example, you can open a notification panel or navigate to a notification page
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const Login()));
             },
           ),
         ],
